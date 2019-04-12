@@ -4,13 +4,30 @@
 
 This repository contains the CellOrganizer Galaxy tools and the instructions on how to install them on your Galaxy instance.
 
-## Before you install 
+## Prerequisites
 
 Before you attempt to install the tools make sure to have
 
-* A working Galaxy instance. Installing Galaxy is beyond the scope of this document. Please refer to the official documentation to install an instance.
-* Matlab. Matlab should be instance in the same machine running Galaxy. The Matlab binary should be included in `$PATH`.
-* CellOrganizer must be downloaded to the system and its location should be available in an environment variable `$CELLORGANIZER`.
+* A working Galaxy instance. Installing Galaxy is beyond the scope of this document. Please refer to the [official documentation](https://galaxyproject.org/admin/get-galaxy/) to install an instance.
+* Matlab. Matlab should be instance in the same machine running Galaxy. The Matlab binary should be included in `$PATH`. Installing Matlab is beyond the scope of this document. Please refer to the [official documentation](https://www.mathworks.com/support/install-matlab.html?q=&page=1) to build an instance.
+
+  For example
+
+  ```
+  ➜  ~ which matlab
+  /usr/local/bin/matlab
+  ```
+
+# Installing CellOrganizer for Galaxy
+
+* CellOrganizer must be downloaded to the system and its location should be set in an environment variable `$CELLORGANIZER`.
+
+  For example
+
+  ```
+  ➜  ~ echo $CELLORGANIZER
+  /usr1/galaxy/cellorganizer-galaxy-tools-v2.8.0/cellorganizer3
+  ```
 
 ## Contributing
 
