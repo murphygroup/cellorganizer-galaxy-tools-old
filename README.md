@@ -30,6 +30,7 @@ Before you attempt to install the tools make sure to have
   For example
   
   ```
+  ~ chown -R galaxy:galaxy /usr15/galaxy/cellorganizer-galaxy-tools-v2.8.0/cellorganizer3
   ~ export CELLORGANIZER=/usr15/galaxy/cellorganizer-galaxy-tools-v2.8.0/cellorganizer3
   ~ echo $CELLORGANIZER
   /usr15/galaxy/cellorganizer-galaxy-tools-v2.8.0/cellorganizer3
