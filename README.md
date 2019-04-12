@@ -29,6 +29,8 @@ Before you attempt to install the tools make sure to have
   /usr1/galaxy/cellorganizer-galaxy-tools-v2.8.0/cellorganizer3
   ```
 
+  To download CellOrganizer visit the [official website](http://www.cellorganizer.org). Please make sure the version of CellOrganizer you install matches the version of CellOrganizer for Galaxy. 
+
 ## Contributing
 
 When contributing to this repository, please first discuss the change you wish to make via issue, [email](mailto:cellorganizer-dev@compbio.cmu.edu), or any other method with the owners of this repository before making a change.
