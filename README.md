@@ -12,27 +12,32 @@ Before you attempt to install the tools make sure to have
 * Matlab. Matlab should be installed in the same machine running Galaxy. Installing Matlab is beyond the scope of this document. Please refer to the [official documentation](https://www.mathworks.com/support/install-matlab.html?q=&page=1) to build an instance.
 * The Matlab binary must be in the `$PATH` of the user running Galaxy.
 
+  For example
+  
   ```
-  ~ export PATH=$(PATH):/usr/local/bin  
+  ~ export PATH=$(PATH):/opt/matlab/bin  
   ~ echo $PATH
-  /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
+  /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/opt/matlab/bin
 
   ~ which matlab
-  /usr/local/bin/matlab
+  /opt/matlab/bin/matlab
   ```
 
 ## Installing CellOrganizer for Galaxy
 
-* CellOrganizer must be downloaded to the system and its location should be set in an environment variable `$CELLORGANIZER`.
+* CellOrganizer must be downloaded to the system and its location should be set in an environment variable called $CELLORGANIZER`.
 
   For example
-
+  
   ```
-  ➜  ~ echo $CELLORGANIZER
-  /usr1/galaxy/cellorganizer-galaxy-tools-v2.8.0/cellorganizer3
+  ~ export CELLORGANIZER=/usr15/galaxy/cellorganizer-galaxy-tools-v2.8.0/cellorganizer3
+  ~ echo $CELLORGANIZER
+  /usr15/galaxy/cellorganizer-galaxy-tools-v2.8.0/cellorganizer3
   ```
 
   To download CellOrganizer visit the [official website](http://www.cellorganizer.org). Please make sure the version of CellOrganizer you install matches the version of CellOrganizer for Galaxy. 
+
+* Copy the CellOrganizer tools into the `$GALAXY/tools`. The variable `$GALAXY`, as explained in the official documentation, holds the location of your Galaxy instance.
 
 ## Contributing
 
