@@ -25,7 +25,7 @@ Before you attempt to install the tools make sure to have
 
 ## Installing CellOrganizer for Galaxy
 
-* CellOrganizer must be downloaded into the system running Galaxy. Its location should be set in an environment variable called $CELLORGANIZER`. The environment variable needs to be accessible to the user running your Galaxy instance. Make sure the user running Galaxy has reading permissions on the CellOrganizer location.
+* CellOrganizer must be downloaded into the system running Galaxy. Its location should be set in an environment variable called `$CELLORGANIZER`. The environment variable needs to be accessible to the user running your Galaxy instance. Make sure the user running Galaxy has reading permissions on the CellOrganizer location.
 
   For example
   
