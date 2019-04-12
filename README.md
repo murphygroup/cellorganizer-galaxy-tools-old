@@ -23,7 +23,7 @@ Before you attempt to install the tools make sure to have
   /usr/local/bin/matlab
   ```
 
-# Installing CellOrganizer for Galaxy
+## Installing CellOrganizer for Galaxy
 
 * CellOrganizer must be downloaded to the system and its location should be set in an environment variable `$CELLORGANIZER`.
 
