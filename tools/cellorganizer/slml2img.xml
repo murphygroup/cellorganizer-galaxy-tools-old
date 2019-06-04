@@ -1,0 +1,143 @@
+<tool id="slml2img" name="Generates a synthetic image" version="0.0.1">
+<!--
+ Copyright (C) 2007-2019 Murphy Lab
+ Lane Center for Computational Biology
+ School of Computer Science
+ Carnegie Mellon University
+
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published
+ by the Free Software Foundation; either version 2 of the License,
+ or (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful, but
+ WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ General Public License for more details.
+
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+ 02110-1301, USA.
+
+ For additional information visit http://murphylab.web.cmu.edu or
+ send email to murphy@cmu.edu
+-->
+  <description> from a valid SLML model.</description>
+  <command>
+    echo -e "tic;
+    current_directory = pwd;
+    cellorganizer_directory = getenv('CELLORGANIZER');
+    cd( cellorganizer_directory );
+    setup();
+    cd( current_directory );
+    options.debug = true;
+    options.display = false;
+    options.verbose = true;
+    options.targetDirectory = current_directory;
+    options.prefix = 'imgs';
+    options.compression = 'lzw';
+    options.synthesis = '$options_synthesis';
+    options.output.tifimages = false;
+    options.output.OMETIFF = $other_options.options_output_OMETIFF;
+    options.output.SBMLSpatial = $other_options.options_output_SBMLSpatial;
+    options.output.writeVCML = $other_options.options_output_VCML;
+    options.output.indexedimage = $other_options.options_output_indexedimage;
+    options.numberOfSynthesizedImages = 1;
+    check_if_files_exist_on_disk_and_link_them_mat('$dataset');
+    files = dir( [ pwd filesep '*.mat']);
+    filenames = {};
+    for i=1:length(files) filenames{length(filenames)+1}=[pwd filesep files(i).name]; end;
+    #for $field in $advanced_options.option
+       options.${field.name}=${field.value};
+    #end for
+    diary diary.txt;
+    answer = slml2img(filenames, options);
+    diary off;
+    toc;
+    exit;" > script.m;
+    sed -i "s/__sq__/'/g" script.m;
+    sed -i "s/__at__/@/g" script.m;
+    sed -i "s/__oc__/{/g" script.m;
+    sed -i "s/__cc__/}/g" script.m;
+    sed -i "s/__ob__/[/g" script.m;
+    sed -i "s/__cb__/]/g" script.m;
+    cat script.m;
+    if [ ! -d $output.extra_files_path ]; then mkdir $output.extra_files_path; fi;
+    cp script.m $output.extra_files_path;
+    bash $__tool_directory__/slml2img.sh "$output.extra_files_path/script.m" "$output.extra_files_path";
+  </command>
+  <inputs>
+    <!-- select datasets -->
+    <param name="dataset" format="mat" type="data" multiple="true" label="Select models(s)" min="1" max="10"/>
+
+    <!-- synthesis option -->
+    <param name="options_synthesis" type="select" label="Synthesis option">
+      <option value="nucleus">Synthesize nucleus</option>
+      <option value="framework">Synthesize nuclear and cell membrane (framework)</option>
+      <option value="all" selected="true">Synthesize from all models</option>
+    </param>
+
+    <!-- Microscope option
+    <param name="options_microscope" type="select" label="options.microscope">
+      <option value="none" selected="true"> None </option>
+      <option value="SVI"> SVI </option>
+    </param>
+     -->
+
+    <!-- Sampling option
+    <param name="options_sample_method" type="select" label="options.sample.method">
+      <option value="disc" selected="true">disc</option>
+      <option value="sampled">sampled</option>
+    </param>
+    -->
+
+    <section name="other_options" title="Output Options" expanded="True">
+      <!-- Output options -->
+      <param name="options_output_OMETIFF" type="boolean" label="Output OMETIFF" checked="true" />
+      <param name="options_output_SBMLSpatial" type="boolean" label="SBML Spatial 3" checked="false" />
+      <param name="options_output_VCML" type="boolean" label="VCML instance" checked="false" />
+      <param name="options_output_indexedimage" type="boolean" label="Indexed image" checked="false" />
+    </section>
+    <section name="advanced_options" title="Advanced options" expanded="false">
+      <repeat name="option" title="Options">
+        <param name="name" type="text" label="Name"> </param>
+        <param name="value" type="text" label="Value"></param>
+      </repeat>
+    </section>
+  </inputs>
+  <outputs>
+    <data format="tiff" from_work_dir="cell1.ome.tif" name="output" label="OME.TIFF synthetic image">
+        <filter>other_options['options_output_OMETIFF']</filter>
+
+    </data>
+    <data format="xml" from_work_dir="cell.xml" name="output2" label="SBML instance">
+        <filter>other_options['options_output_SBMLSpatial']</filter>
+    </data>
+    <data format="vcml" from_work_dir="cell.vcml" name="output3" label="VCML instance">
+        <filter>other_options['options_output_VCML']</filter>
+    </data>
+    <data format="png" from_work_dir="indexed.png" name="output4" label="Indexed image">
+        <filter>other_options['options_output_indexedimage']</filter>
+    </data>
+  </outputs>
+  <stdio>
+  </stdio>
+<help>
+**Description**
+
+Synthesize image(s) from generative models trained using CellOrganizer.
+
+-----
+
+**Input**
+
+One or several generative models.
+
+-----
+
+**Output**
+
+A synthetic image.
+</help>
+</tool>

@@ -1,0 +1,78 @@
+<tool id="validate_sbml_instance" name="Validates an SBML Level 3 instance." version="0.0.1">
+<!--
+ Copyright (C) 2007-2019 Murphy Lab
+ Lane Center for Computational Biology
+ School of Computer Science
+ Carnegie Mellon University
+
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published
+ by the Free Software Foundation; either version 2 of the License,
+ or (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful, but
+ WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ General Public License for more details.
+
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+ 02110-1301, USA.
+
+ For additional information visit http://murphylab.web.cmu.edu or
+ send email to murphy@cmu.edu
+-->
+  <description>Returns true if file is valid. False otherwise..</description>
+  <command interpreter="bash">
+	validate_sbml_instance.sh $dataset
+  </command>
+  <inputs>
+	  <param name="dataset" type="data" format="xml" label="Choose a file for validation" multiple="false" optional="false" />
+  </inputs>
+  <outputs>
+    <data name="output" format="html" label="Validation of ${dataset.name}" from_work_dir="report.html"/>
+  </outputs>
+<tests>
+  <test>
+    <param name="dataset" value="cell.xml" ftype="xml"/>
+    <output name="file">
+         <assert_contents>
+             <not_has_text text="Error" />
+         </assert_contents>
+    </output>
+  </test>
+</tests>
+<stdio>
+  <exit_code range="1"   level="fatal"   description="Invalid SBML Level 3 instance" />
+</stdio>
+<help>
+**Description**
+
+.. image:: http://www.cellorganizer.org/galaxy/images/sbml_logo.png
+
+|
+| Validates an SBML_ Level 3 instance using the public SBML online _validator.
+
+-----
+
+**Input**
+
+An SBML Level 3 instance (XML file).
+
+-----
+
+**Options**
+
+No options are needed.
+
+-----
+
+**Output**
+
+Returns true if the input file is a valid SBML Level 3 instance. Returns false otherwise.
+
+.. _SBML: http://sbml.org/Documents/Specifications/SBML_Level_3
+.. _validator: http://sbml.org/Facilities/Validator/
+</help>
+</tool>

@@ -1,0 +1,76 @@
+<tool id="show_shape_space" name="Display" version="0.0.1">
+<!--
+ Copyright (C) 2007-2018 Murphy Lab
+ Lane Center for Computational Biology
+ School of Computer Science
+ Carnegie Mellon University
+
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published
+ by the Free Software Foundation; either version 2 of the License,
+ or (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful, but
+ WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ General Public License for more details.
+
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+ 02110-1301, USA.
+
+ For additional information visit http://murphylab.web.cmu.edu or
+ send email to murphy@cmu.edu
+-->
+<description> shape space plot from a model.</description>
+<command>
+  bash $__tool_directory__/show_shape_space.sh $model $number_of_labels $grid_size $output.extra_files_path;
+</command>
+<inputs>
+  <param format="mat" name="model" type="data" label="Select model"></param>
+  <param name="number_of_labels" type="integer" value="5" label="Number of Labels"/>
+  <param name="grid_size" type="integer" value="50" label="Grid Size"/>
+</inputs>
+<outputs>
+  <data format="png" name="output" from_work_dir="show_shape_space.png"/>
+</outputs>
+<tests>
+  <test>
+    <param name="model" value="helamodel_9_16_15.mat" ftype="mat"/>
+    <param name="number_of_labels" value="5" type="integer"/>
+    <param name="grid_size" value="50" type="integer"/>
+    <output value="script.m" ftype="mat"/>
+  </test>
+</tests>
+<stdio>
+  <exit_code range="1" level="fatal" description="Unable to find output file show_shape_space.png on disk." />
+</stdio>
+<help>
+
+**Description**
+
+The shape space plot tool creates a visualization of the shape space from a trained model.
+
+-----
+
+**Inputs**
+
+A model.
+
+-----
+
+**Output**
+
+A PNG file.
+
+-----
+
+**Example**
+
+.. image:: https://raw.githubusercontent.com/icaoberg/cellorganizer-galaxy-tools/dev/tools/cellorganizer/images/shape_space.png
+  :height: 250
+  :target: https://raw.githubusercontent.com/icaoberg/cellorganizer-galaxy-tools/dev/tools/cellorganizer/images/shape_space.png
+
+</help>
+</tool>
