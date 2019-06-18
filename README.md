@@ -1,8 +1,36 @@
 # cellorganizer-galaxy-tools
 
-![screenshot](/images/screenshot.png)
+![screenshot](/images/cellorganizer-v2.8.1.png)
 
 This repository contains the CellOrganizer Galaxy tools and the instructions on how to install them on your Galaxy instance.
+
+### CellOrganizer v2.8.1
+
+#### Fixes
+* Display shape space when dataset field is not present or empty.
+* Generation of watertight SBML Spatial output has been corrected for translation errors.
+
+#### Other
+* The following models have been rebuilt using this version of CellOrganizer. Updated models can be found in the model repository.
+   
+  - 2D HeLa diffeomorphic framework
+  - 2D HeLa PCA framework
+  - 2D HeLa classic framework
+
+* CellOrganizer for Galaxy now supports Galaxy server v19.05.
+
+### CellOrganizer v2.8.0
+
+#### Features
+* Added improved model for generating protein distributions during T cell synapse formation that only requires annotation of cell couples at a single time point model and improves synapse alignment. Includes training, synthesis and info demos.
+* Added outline PCA model for 2D cell and nuclear shapes. Includes training, synthesis and info demos.
+* Added SPHARM-RPDM model for 3D cell and nuclear shapes (see https://doi.org/10.1093/bioinformatics/bty983). Includes training, synthesis and info demos.
+
+#### Fixes 
+* Fixed issues with options.train.flag. Valid options should be nuclear, cell, framework, and protein.
+
+#### Enhancements
+* Modularized and cleaned up img2slml.
 
 ## Prerequisites
 
@@ -30,10 +58,10 @@ Before you attempt to install the tools make sure to have
   For example
   
   ```
-  ~ chown -R galaxy:galaxy /usr15/galaxy/cellorganizer-galaxy-tools-v2.8.0/cellorganizer3
-  ~ export CELLORGANIZER=/usr15/galaxy/cellorganizer-galaxy-tools-v2.8.0/cellorganizer3
+  ~ chown -R galaxy:galaxy /usr15/galaxy/cellorganizer-galaxy-tools-v2.8.1/cellorganizer3
+  ~ export CELLORGANIZER=/usr15/galaxy/cellorganizer-galaxy-tools-v2.8.1/cellorganizer3
   ~ echo $CELLORGANIZER
-  /usr15/galaxy/cellorganizer-galaxy-tools-v2.8.0/cellorganizer3
+  /usr15/galaxy/cellorganizer-galaxy-tools-v2.8.1/cellorganizer3
   ```
 
   To download CellOrganizer visit the [official website](http://www.cellorganizer.org). Please make sure the version of CellOrganizer you install matches the version of CellOrganizer for Galaxy. 
@@ -51,4 +79,3 @@ Support for [CellOrganizer](http://cellorganizer.org/) has been provided by gran
 [![MMBioS](https://i1.wp.com/www.cellorganizer.org/wp-content/uploads/2017/08/MMBioSlogo-e1503517857313.gif?h=60)](http://www.mmbios.org)
 
 Copyright (c) 2007-2019 by the [Murphy Lab](http://murphylab.web.cmu.edu) at the [Computational Biology Department](http://www.cbd.cmu.edu) in [Carnegie Mellon University](http://www.cmu.edu)
-
